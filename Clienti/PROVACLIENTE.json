@@ -1,0 +1,64 @@
+{
+  "cliente": "ProvaCliente S.r.l.",
+  "riferimento": "Sig. Rossi",
+  "macchina": "SALTATRICE",
+  "lega": "STAGNO",
+
+  "note_correttive": {
+    "Nichel": {
+      "high":     "⚠️ Ni elevato: ridurre la concentrazione aggiungendo stagno puro e controllare le sorgenti di contaminazione.",
+      "low":      "📉 Ni in calo: verificare il consumo e integrare con soluzione di nichel approvata.",
+      "unstable": "⚡ Ni instabile: aumentare la frequenza di campionamento e verificare la stabilità del bagno.",
+      "ok":       "✅ Nichel nella norma. Continuare il monitoraggio standard ogni 3 mesi."
+    },
+    "Rame": {
+      "high":     "🔴 Cu elevato: controllare le leghe in ingresso e limitare il contatto con superfici in rame.",
+      "low":      "📉 Cu basso: verificare usura degli elettrodi e bilanciare la composizione del bagno.",
+      "unstable": "⚡ Cu variabile: ispezionare il circuito di pompaggio e i filtri per contaminazioni intermittenti.",
+      "ok":       "✅ Rame nella norma. Pianificare la prossima analisi nel rispetto della frequenza trimestrale."
+    },
+    "Piombo": {
+      "high":     "🚨 Pb oltre soglia: sospendere l'utilizzo della lega e procedere alla sostituzione parziale del bagno.",
+      "low":      "✅ Piombo nella norma.",
+      "unstable": "⚡ Pb oscillante: verificare la provenienza dei materiali e la pulizia del crogiolo.",
+      "ok":       "✅ Piombo nella norma. Monitorare alla prossima scadenza trimestrale."
+    }
+  },
+
+  "prossima_analisi": {
+    "frequenza_mesi": 3,
+    "nota_promemoria": "Prossima analisi prevista per giugno 2025. Contattare il laboratorio con almeno 2 settimane di anticipo."
+  },
+
+  "pozzetti": [
+    {
+      "id": "P1",
+      "label": "Pozzetto 1 – Linea A",
+      "analisi": [
+        { "data": "10/01/24", "Nichel": 0.0821, "Rame": 0.0134, "Piombo": 0.0012 },
+        { "data": "15/04/24", "Nichel": 0.0754, "Rame": 0.0189, "Piombo": 0.0008 },
+        { "data": "22/07/24", "Nichel": 0.0912, "Rame": 0.0201, "Piombo": 0.0015 },
+        { "data": "10/10/24", "Nichel": 0.0683, "Rame": 0.0167, "Piombo": 0.0011 }
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "Pozzetto 2 – Linea B",
+      "analisi": [
+        { "data": "12/01/24", "Nichel": 0.0445, "Rame": 0.0298, "Piombo": 0.0009 },
+        { "data": "18/04/24", "Nichel": 0.0512, "Rame": 0.0341, "Piombo": 0.0021 },
+        { "data": "25/07/24", "Nichel": 0.0389, "Rame": 0.0276, "Piombo": 0.0007 }
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "Pozzetto 3 – Linea C",
+      "analisi": [
+        { "data": "14/01/24", "Nichel": 0.1023, "Rame": 0.0452, "Piombo": 0.0033 },
+        { "data": "20/04/24", "Nichel": 0.0978, "Rame": 0.0388, "Piombo": 0.0028 },
+        { "data": "30/07/24", "Nichel": 0.0867, "Rame": 0.0411, "Piombo": 0.0019 },
+        { "data": "15/10/24", "Nichel": 0.0934, "Rame": 0.0399, "Piombo": 0.0024 }
+      ]
+    }
+  ]
+}
