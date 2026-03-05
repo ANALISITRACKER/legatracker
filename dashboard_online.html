@@ -24,10 +24,10 @@ nav { background: #111827; border-bottom: 2px solid #1d4ed8; padding: 0 24px; di
 .poz-tab { padding: 7px 18px; border-radius: 7px; cursor: pointer; font-size: 13px; font-weight: 600; border: 1px solid #2a3a5a; color: #94a3b8; background: #1e2d45; transition: all .2s; }
 .poz-tab.active { background: #1d4ed8; border-color: #3b82f6; color: #fff; }
 
-.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
 .kpi { background: #111827; border: 1px solid #1e3a5a; border-radius: 10px; padding: 16px; position: relative; overflow: hidden; }
 .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
-.kpi.ni::before { background: #4da6ff; } .kpi.cu::before { background: #f97316; } .kpi.pb::before { background: #4ade80; }
+.kpi.ni::before { background: #4da6ff; } .kpi.cu::before { background: #f97316; } .kpi.pb::before { background: #4ade80; } .kpi.ge::before { background: #c084fc; }
 .kpi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #4a6080; margin-bottom: 8px; }
 .kpi-val { font-size: 28px; font-weight: 700; margin-bottom: 3px; }
 .kpi-val small { font-size: 14px; color: #4a6080; }
@@ -94,11 +94,12 @@ td.out { color: #f87171 !important; font-weight: 700; }
 <script>
 // ─── SPECS & NOTES ────────────────────────────────────────────────────────
 const SPECS = {
-  Nichel: { min: 0.010, max: 0.100, color: '#4da6ff', cls: 'ni' },
-  Rame:   { min: 0.400, max: 0.850, color: '#f97316', cls: 'cu' },
-  Piombo: { min: null,  max: 0.100, color: '#4ade80', cls: 'pb' },
+  Nichel:   { min: 0.010, max: 0.100, color: '#4da6ff', cls: 'ni' },
+  Rame:     { min: 0.400, max: 0.850, color: '#f97316', cls: 'cu' },
+  Piombo:   { min: null,  max: 0.100, color: '#4ade80', cls: 'pb' },
+  Germanio: { min: 0.007, max: 0.010, color: '#c084fc', cls: 'ge' },
 };
-const COMPS = ['Nichel', 'Rame', 'Piombo'];
+const COMPS = ['Nichel', 'Rame', 'Piombo', 'Germanio'];
 
 const DEFAULT_NOTES = {
   Nichel: {
@@ -118,6 +119,12 @@ const DEFAULT_NOTES = {
     low:      '✅ Piombo nella norma.',
     unstable: '⚡ Pb oscillante: possibile contaminazione episodica. Tracciare lotti componenti.',
     ok:       '✅ Piombo nella norma. Continuare monitoraggio periodico.'
+  },
+  Germanio: {
+    high:     '🔴 Ge elevato (>0,010%): consumo eccessivo additivo. Verificare aggiunte recenti e bilanciare il dosaggio.',
+    low:      '📉 Ge basso (<0,007%): livello insufficiente. Integrare Germanio per mantenere proprietà anti-ossidazione.',
+    unstable: '⚡ Ge instabile (CV>10%): dosaggio irregolare o agitazione insufficiente. Verificare distribuzione in vasca.',
+    ok:       '✅ Germanio nella norma (0,007–0,010%). Continuare monitoraggio periodico.'
   }
 };
 
