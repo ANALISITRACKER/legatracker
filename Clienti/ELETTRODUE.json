@@ -30,8 +30,9 @@
     }
   },
   "prossima_analisi": {
-    "frequenza_mesi": 6,
-    "nota_promemoria": "Tutti i valori sono nella norma. Nessun intervento necessario."
+    "frequenza_mesi": 12,
+    "nota_promemoria": "Tutti i valori sono nella norma. Nessun intervento necessario.",
+    "data_calcolata": "11/11/2026"
   },
   "pozzetti": [
     {
