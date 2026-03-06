@@ -231,7 +231,8 @@ function renderDashboard() {
     let giorni = '—'; let countClass = 'ok';
     if (pa.data_calcolata) {
       const parts = pa.data_calcolata.split('/');
-      const dataTarget = new Date(`20${parts[2]}`, parts[1]-1, parts[0]);
+      const year = parts[2].length === 4 ? parseInt(parts[2]) : 2000 + parseInt(parts[2]);
+      const dataTarget = new Date(year, parseInt(parts[1])-1, parseInt(parts[0]));
       const diff = Math.ceil((dataTarget - oggi) / (1000*60*60*24));
       giorni = diff;
       countClass = diff < 0 ? 'err' : diff <= 14 ? 'warn' : 'ok';
