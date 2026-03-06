@@ -325,12 +325,12 @@ const d3   = a => a.length>=3 ? a[a.length-1]-a[a.length-3] : 0;
 function getStato(v, comp, cvp) {
   const s=SPECS[comp];
   if((s.min&&v<s.min)||(s.max&&v>s.max)) return 'err';
+  if(cvp>30) return 'warn';
   if(cvp>10) return 'warn';
-  if(cvp>5)  return 'warn';
   return 'ok';
 }
 function statoLabel(s) { return {ok:'✅ OK',warn:'⚠️ ATTENZIONE',err:'🔴 FUORI SPEC'}[s]; }
-function cvColor(c) { return c<=5?'#4ade80':c<=10?'#fbbf24':'#f87171'; }
+function cvColor(c) { return c<=10?'#4ade80':c<=30?'#fbbf24':'#f87171'; }
 function badgeHtml(s) {
   const bg={ok:'#14532d',warn:'#78350f',err:'#7f1d1d'}[s];
   const col={ok:'#4ade80',warn:'#fbbf24',err:'#f87171'}[s];
@@ -349,7 +349,7 @@ function getNota(vals, comp, notesObj) {
   const c=cv(vals); const n=notesObj[comp]||DEFAULT_NOTES[comp];
   if(s.max&&last>s.max) return {t:n.high, cls:'err'};
   if(s.min&&last<s.min) return {t:n.low,  cls:'warn'};
-  if(c>10) return {t:n.unstable, cls:'warn'};
+  if(c>30) return {t:n.unstable, cls:'warn'};
   return {t:n.ok, cls:'ok'};
 }
 
@@ -507,7 +507,7 @@ function renderClient(){
     h+=`<tr>
       <td class="tdl">${comp}</td>
       <td>${m.toFixed(4)}</td><td>${s2.toFixed(4)}</td>
-      <td><span class="badge" style="background:${c<=5?'#14532d':c<=10?'#78350f':'#7f1d1d'};color:${cvColor(c)}">CV ${c.toFixed(1)}%</span></td>
+      <td><span class="badge" style="background:${c<=10?'#14532d':c<=30?'#78350f':'#7f1d1d'};color:${cvColor(c)}">CV ${c.toFixed(1)}%</span></td>
       <td style="color:${Math.abs(dl)>m*0.05?'#fbbf24':'#94a3b8'}">${dl>=0?'+':''}${dl.toFixed(4)}</td>
       <td>${last.toFixed(4)}</td>
       <td>${badgeHtml(st)}</td>
@@ -532,7 +532,7 @@ function renderClient(){
       <div class="stats-row">
         <div class="stat-box"><div class="stat-lbl">Ultimo valore</div><div class="stat-val" style="color:${st==='err'?'#f87171':st==='warn'?'#fbbf24':'#e2e8f0'}">${last.toFixed(4)}%</div></div>
         <div class="stat-box"><div class="stat-lbl">Media storica</div><div class="stat-val" style="color:#94a3b8">${avg.toFixed(4)}%</div></div>
-        <div class="stat-box"><div class="stat-lbl">CV% variabilità</div><div class="stat-val" style="color:${cvColor(c)}">${c.toFixed(1)}% ${c<=5?'🟢':c<=10?'🟡':'🔴'}</div></div>
+        <div class="stat-box"><div class="stat-lbl">CV% variabilità</div><div class="stat-val" style="color:${cvColor(c)}">${c.toFixed(1)}% ${c<=10?'🟢':c<=30?'🟡':'🔴'}</div></div>
         <div class="stat-box"><div class="stat-lbl">Δ ultime 3</div><div class="stat-val" style="color:${Math.abs(dl)>avg*0.05?'#fbbf24':'#94a3b8'}">${dl>=0?'+':''}${dl.toFixed(4)}%</div></div>
       </div>
       <div id="svg-${comp}">${buildSVG(vals,dates,s.color,s.max,s.min,comp)}</div>
